@@ -1,12 +1,12 @@
-version: "3.9" # version of DC syntax
+version: "3.9"
 
 services:
   app:
     build:
-      context: .  # the context is the root dir we are running the command from
+      context: .
     ports:
-      - "8000:8000" # port inside the container
+      - "8000:8000"
     volumes:
-      - ./app:app  # marking directories of our system inside the container
+      - ./app:/app
     command: >
-      sh -c "python manage.py runserver 0.0.0.0:8000"  
+      sh -c "python manage.py runserver 0.0.0.0:8000"
