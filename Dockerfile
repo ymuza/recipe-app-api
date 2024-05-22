@@ -12,11 +12,15 @@ EXPOSE 8000
 ARG DEV=false
 RUN python -m venv /py && \
     /py/bin/pip install --upgrade pip && \
+    apt-get update && \
+    apt-get install -y --no-install-recommends postgresql-client && \
+    apt-get install -y --no-install-recommends build-essential postgresql-server-dev-all && \
     /py/bin/pip install -r /tmp/requirements.txt && \
-    if [ $DEV = "true" ] ; \
-        then echo "--DEV BUILD--" && /py/bin/pip install -r /tmp/requirements.dev.txt ; \
+    if [ "$DEV" = "true" ]; then \
+        echo "--DEV BUILD--" && /py/bin/pip install -r /tmp/requirements.dev.txt; \
     fi && \
-    rm -rf /tmp && \
+    rm -rf /var/lib/apt/lists/* /tmp/* && \
+    apt-get purge -y --auto-remove build-essential postgresql-server-dev-all && \
     adduser \
         --disabled-password \
         --no-create-home \

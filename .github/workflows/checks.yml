@@ -13,7 +13,7 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USER }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Checkout # action provided by gitHub for free
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4 # updated the action. If it doesn't work, return to v1
       - name: Test
         run: docker-compose run --rm app sh -c "python manage.py test" # this command runs the unit tests
       - name: Lint

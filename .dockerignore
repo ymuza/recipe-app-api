@@ -1,7 +1,5 @@
 # .dockerignore
 *
-!pyproject.toml
-!poetry.lock
 !Dockerfile
 !docker-compose.yml
 !requirements.txt
