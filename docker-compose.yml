@@ -20,7 +20,7 @@ services:
       - DB_NAME=devdb
       - DB_USER=devuser
       - DB_PASS=32874993
-    depends_on:  # this means it app will depend on db to start (db has to start first)
+    depends_on:  # this means it app will depend on db to start (db has to start first). There's a wait for db script
       - db
 
   db:

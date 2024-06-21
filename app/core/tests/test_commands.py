@@ -2,17 +2,14 @@
 
 from unittest.mock import patch  # patch to mock behaviour
 
-from psycopg2 import (
-    OperationalError as Psycopg2Error,
-)  # error which we might get if the db is not ready
-
-from django.core.management import (
-    call_command,
-)  # helper function to simulate the call fo a command by name
-from django.db.utils import (
-    OperationalError,
-)  # another error which we might get if the db is not ready
+from django.core.management import \
+    call_command  # helper function to simulate the call fo a command by name
+from django.db.utils import \
+    OperationalError  # another error which we might get if the db is not ready
 from django.test import SimpleTestCase
+from psycopg2 import \
+    OperationalError as \
+    Psycopg2Error  # error which we might get if the db is not ready
 
 
 @patch(
