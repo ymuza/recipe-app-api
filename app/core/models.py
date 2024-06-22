@@ -1,4 +1,5 @@
 """database models"""
+
 from django.contrib.auth.models import (AbstractBaseUser, BaseUserManager,
                                         PermissionsMixin)
 from django.db import models
@@ -7,10 +8,12 @@ from django.db import models
 class UserManager(BaseUserManager):
     """Manager for users."""
 
-    def create_user(self, email, password=None, **extra_fields):  # will create extra fields in the db if needed.
+    def create_user(
+        self, email, password=None, **extra_fields
+    ):  # will create extra fields in the db if needed.
         """Create, save and return new user."""
         if not email:
-            raise ValueError('User must have an email address.')
+            raise ValueError("User must have an email address.")
         user = self.model(email=email, **extra_fields)
         user.set_password(password)  # get the password and encrypts it.
         user.save(using=self._db)  # this is just a best practice
@@ -35,4 +38,4 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     objects = UserManager()  # this is how you assign a user manager in django.
 
-    USERNAME_FIELD = 'email'
+    USERNAME_FIELD = "email"
